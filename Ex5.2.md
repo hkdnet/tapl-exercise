@@ -133,9 +133,10 @@ g = \fct. \n. test (reqleq n c0) c1 (times n (fc (prd n)))
 ## Ex5.2.10.
 
 ```
-churchnat = \c. if (iszro c)
-                then 0
-                else (succ (churchnat (prd c)))
+tmp = \c. if (iszro c)
+          then 0
+          else (succ (tmp (prd c)))
+churchnat = fix tmp
 ```
 
 memo: Ex5.2.9. の論点を理解していないのでこれも危ういかも。
