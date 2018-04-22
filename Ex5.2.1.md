@@ -1,0 +1,3 @@
+or = \b. \c. b tru c
+
+not = \b. b fls tru
