@@ -1,0 +1,12 @@
+```
+fix = \f. (\x. f (\y. x x y)) (\x. f (\y. x x y));
+g = \fct. \n. if reqleq n c0
+              then c1
+              else (times n (fc (prd n)))
+```
+
+test だと簡約がめんどい？のかな？
+
+```
+g = \fct. \n. test (reqleq n c0) c1 (times n (fc (prd n)))
+```
