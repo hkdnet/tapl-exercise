@@ -116,6 +116,8 @@ equal = \m. \n. and (iszro (sub m n)) (iszro (sub n m))
 むずい……
 考え方のヒントをきく
 
+Chris Okasaki も言っていたように数値とListへの類似性に注目すると nil == fls な体系ができる
+
 ## Ex5.2.9.
 
 ```
