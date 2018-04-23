@@ -129,7 +129,7 @@ g = \fct. \n. if reqleq n c0
 
 test だと簡約がめんどい？のかな？
 
--> Iif 関数 ( VB.NET ) のように療法が評価されて発散してしまう、とのこと
+-> Iif 関数 ( VB.NET ) のように両方が評価されて発散してしまう、とのこと
 
 ```
 g = \fct. \n. test (iszro n) c1 (times n (fc (prd n)))
