@@ -145,7 +145,7 @@ g = \fct. \n. test (iszro n) c1 (\x. times n (fc (prd n)) x)
 ## Ex5.2.10.
 
 ```
-tmp = \c. (iszro c) 0 (succ (tmp (prd c)))
+tmp = \c. (iszro c) c0 (succ (tmp (prd c)))
 churchnat = fix tmp
 ```
 
