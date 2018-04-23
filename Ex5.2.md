@@ -133,6 +133,7 @@ test だと簡約がめんどい？のかな？
 
 ```
 g = \fct. \n. test (iszro n) c1 (times n (fc (prd n)))
+g = \fct. \n. test (iszro n) c1 (\x. times n (fc (prd n)) x)
 ```
 
 ## Ex5.2.10.
