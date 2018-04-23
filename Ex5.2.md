@@ -111,6 +111,12 @@ church数 m, n が実数において m > n であるときに評価が途中で�
 equal = \m. \n. and (iszro (sub m n)) (iszro (sub n m))
 ```
 
+2引数をとる関数に対する fix を定義して↓すればいいような気もする
+
+```
+equal = \m. \n. test (or (iszro m) (iszro n)) (and (iszro n) (iszro m)) (equal (prd m) (prd n))
+```
+
 ## Ex5.2.8.
 
 むずい……
