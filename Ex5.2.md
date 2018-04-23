@@ -126,17 +126,31 @@ g = \fct. \n. if reqleq n c0
 
 test だと簡約がめんどい？のかな？
 
+-> Iif 関数 ( VB.NET ) のように療法が評価されて発散してしまう、とのこと
+
 ```
-g = \fct. \n. test (reqleq n c0) c1 (times n (fc (prd n)))
+g = \fct. \n. test (iszro n) c1 (times n (fc (prd n)))
 ```
 
 ## Ex5.2.10.
 
 ```
-tmp = \c. if (iszro c)
-          then 0
-          else (succ (tmp (prd c)))
+tmp = \c. (iszro c) 0 (succ (tmp (prd c)))
 churchnat = fix tmp
 ```
 
 memo: Ex5.2.9. の論点を理解していないのでこれも危ういかも。
+
+## Ex5.2.11.
+
+理解しやすかったので別解のほうを使う
+
+```
+nil = pair tru tru;
+cons = \h. \t. pair fls (pair h t);
+head = \z. fst (snd z)
+tail = \z. snd (snd z)
+isnil = fst
+```
+
+
