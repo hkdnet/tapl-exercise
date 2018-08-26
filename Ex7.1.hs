@@ -29,6 +29,14 @@ termShift d t = walk 0 t
     walk c (TmAbs fi x t1) = TmAbs fi x (walk (c+1) t1)
     walk c (TmApp fi t1 t2) = TmApp fi (walk c t1) (walk c t2)
 
+termSubst :: Depth -> Term -> Term -> Term
+-- [j -> s] t
+termSubst j s t = walk 0 t
+  where
+    walk c (TmVar fi x n) = if x == j+c then termShift c s else TmVar fi x n
+    walk c (TmAbs fi x t1) = TmAbs fi x (walk (c+1) t1)
+    walk c (TmApp fi t1 t2) = TmApp fi (walk c t1) (walk c t2)
+
 main :: IO()
 main = do
   let ctx1 = ["b", "a"]
