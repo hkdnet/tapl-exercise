@@ -14,7 +14,7 @@ pickFreshName :: Context -> String -> (Context, String)
 pickFreshName c t = (c, t)
 
 contextLength :: Context -> Int
-contextLength _ = 1
+contextLength = length
 
 indexToName :: Info -> Context -> Int -> String
 indexToName _ _ s = show s
