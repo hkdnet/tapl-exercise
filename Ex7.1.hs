@@ -9,6 +9,7 @@ showTerm ctx (TmAbs info x t1) = let (ctx', x') = pickFreshName ctx x in "(lambd
 showTerm ctx (TmApp info t1 t2) = "(" ++ showTerm ctx t1 ++ " " ++ showTerm ctx t2 ++ ")"
 showTerm ctx (TmVar info x depth) = if contextLength ctx == depth then indexToName info ctx x else "[bad index]"
 
+-- 名前を解釈するらしいけどとりあえず数値で出しとく
 pickFreshName :: Context -> String -> (Context, String)
 pickFreshName c t = (c, t)
 
@@ -28,6 +29,6 @@ main = do
 
   -- ↑2 (\. \. 1 (0 2))
   let ctx2 = 2
-  let term = TmApp info (TmVar info 1 2) (TmApp info (TmVar info 0 2) (TmVar info 2 2))
-  print $ showTerm ctx2 term
+  let term = TmAbs info "1" (TmAbs info "0" ( TmApp info (TmVar info 1 2) (TmApp info (TmVar info 0 2) (TmVar info 2 2))))
+  print $ showTerm ctx2 term -- "(lambda 1. (lambda 0. (1 (0 2))))"
 
