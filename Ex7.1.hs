@@ -19,7 +19,13 @@ contextLength = id
 indexToName :: Info -> Context -> Int -> String
 indexToName _ _ s = show s
 
+termShift :: Depth -> Term -> Term
+termShift d t = walk 0 d t
 
+walk :: Int -> Depth -> Term -> Term
+walk c d (TmVar fi x n) = if x >= c then TmVar fi (x+d) (n+d) else TmVar fi x (n+d)
+walk c d (TmAbs fi x t1) = TmAbs fi x (walk (c+1) d t1)
+walk c d (TmApp fi t1 t2) = TmApp fi (walk c d t1) (walk c d t2)
 
 main :: IO()
 main = do
