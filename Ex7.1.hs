@@ -1,8 +1,7 @@
 data Info = I Int Int deriving Show
 type Depth = Int
 type VarName = String
-data Binding = DataBind
-type Context = [(String, Binding)]
+type Context = Int
 data Term = TmVar Info Int Depth | TmAbs Info VarName Term | TmApp Info Term Term deriving Show
 
 showTerm :: Context -> Term -> String
@@ -14,7 +13,7 @@ pickFreshName :: Context -> String -> (Context, String)
 pickFreshName c t = (c, t)
 
 contextLength :: Context -> Int
-contextLength = length
+contextLength = id
 
 indexToName :: Info -> Context -> Int -> String
 indexToName _ _ s = show s
@@ -23,6 +22,12 @@ indexToName _ _ s = show s
 
 main :: IO()
 main = do
-  let ctx = [("a", DataBind)]
+  let ctx1 = 1
   let info = I 1 1
-  print $ showTerm ctx (TmVar info 1 1)
+  print $ showTerm ctx1 (TmVar info 1 1)
+
+  -- ↑2 (\. \. 1 (0 2))
+  let ctx2 = 2
+  let term = TmApp info (TmVar info 1 2) (TmApp info (TmVar info 0 2) (TmVar info 2 2))
+  print $ showTerm ctx2 term
+
