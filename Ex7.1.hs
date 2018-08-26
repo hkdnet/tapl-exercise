@@ -23,12 +23,11 @@ indexToName :: Context -> Int -> String
 indexToName ctx n = ctx !! n
 
 termShift :: Depth -> Term -> Term
-termShift d t = walk 0 d t
-
-walk :: Int -> Depth -> Term -> Term
-walk c d (TmVar fi x n) = if x >= c then TmVar fi (x+d) (n+d) else TmVar fi x (n+d)
-walk c d (TmAbs fi x t1) = TmAbs fi x (walk (c+1) d t1)
-walk c d (TmApp fi t1 t2) = TmApp fi (walk c d t1) (walk c d t2)
+termShift d t = walk 0 t
+  where
+    walk c (TmVar fi x n) = if x >= c then TmVar fi (x+d) (n+d) else TmVar fi x (n+d)
+    walk c (TmAbs fi x t1) = TmAbs fi x (walk (c+1) t1)
+    walk c (TmApp fi t1 t2) = TmApp fi (walk c t1) (walk c t2)
 
 main :: IO()
 main = do
